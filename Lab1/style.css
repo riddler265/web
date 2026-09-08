@@ -1,11 +1,41 @@
 .header {
     font-family: cursive;
-    color: #333333;
+    color: rgb(255, 205, 0);
     font-size: 24px;  
     text-align: left;
     padding-left: 25px;
-    border-radius: 25px;
-    background-color: blueviolet;
+    border: 25px, solid, rgb(189, 45, 50);
+    border-radius: 5px;
+    background-color: rgb(237, 50, 55);
+}
+
+.coordinateDiv {
+    box-sizing: border-box;
+    padding: 0px;
+    border: 5px, solid, rgb(24, 21, 4);
+    border-radius: 5px;
+    width: 400px;
+    height: 400px;
+}
+
+form {
+    font-family: cursive;
+    font-size: 15px;
+    font-weight: 900;
+    color: rgb(126, 111, 49);
+}
+
+.parametrYSection input[type="radio"] {
+    display: none;
+}
+
+.parametrYSection label {
+    display: inline-block; /* ← ГЛАВНОЕ! */
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 2px, solid, rgb(169, 149, 67);
+    border-radius: 5px;
 }
 
 body {
@@ -13,20 +43,11 @@ body {
 }
 
 table {
-    border: 0;
+    border-spacing: 5px;
+    background-color: rgb(204, 179, 80);
+    border: 10px, solid, rgb(204, 179, 80);
+    border-radius: 25px;
     width: 67%;
     margin: 0 auto;
-    background-color: #333333;
-    padding: 0 auto;
-}
-
-tr {
-    padding: 100px;
-}
-
-td {
-    border: 0;
-
-    margin-top: 10px;
 }
 
