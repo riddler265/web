@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab1 12633</title>
-    <script src="script.js" defer></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100..900&display=swap" rel="stylesheet">
 </head>
@@ -17,61 +16,72 @@
                 <h2>12633</h2>
             </td>
         </tr>
-        <tr>
-            <td>
-                <form action="">
-                    <legend>Параметр X</legend>
-                    <label for="x">Параметр X</label>
-                    <input type="text" id="x" placeholder="Введите X" required value="-5" required>>
+        <tr id="main">
+            <td class="formTd">
+                <form action="" id="ShootForm">
+                    <div id="parametrYSection" class="parametrYSection">
+                        <legend>Параметр Y</legend>
 
-                    <legend>Параметр Y</legend>
-                    <label for="-2Y">-2</label>
-                    <input type="radio" name="ParametrY" id="-2Y" required>
+                        <div>
+                            <label for="-2Y">-2</label>
+                            <input type="radio" name="ParametrY" id="-2Y" required>
 
-                    <label for="-1.5Y">-1.5</label>
-                    <input type="radio" name="ParametrY" id="-1.5Y">
+                            <label for="-1.5Y">-1.5</label>
+                            <input type="radio" name="ParametrY" id="-1.5Y">
 
-                    <label for="-1Y">-1</label>
-                    <input type="radio" name="ParametrY" id="-1Y">
+                            <label for="-1Y">-1</label>
+                            <input type="radio" name="ParametrY" id="-1Y">
+                        </div>
 
-                    <label for="-0.5Y">-0.5</label>
-                    <input type="radio" name="ParametrY" id="-0.5Y">
+                        <div>
+                            <label for="-0.5Y">-0.5</label>
+                            <input type="radio" name="ParametrY" id="-0.5Y">
 
-                    <label for="0Y">0</label>
-                    <input type="radio" name="ParametrY" id="0Y">
+                            <label for="0Y">0</label>
+                            <input type="radio" name="ParametrY" id="0Y">
 
-                    <label for="0.5Y">0.5</label>
-                    <input type="radio" name="ParametrY" id="0.5Y">
+                            <label for="0.5Y">0.5</label>
+                            <input type="radio" name="ParametrY" id="0.5Y">
+                        </div>
 
-                    <label for="1Y">1</label>
-                    <input type="radio" name="ParametrY" id="1Y">
+                        <div>
+                            <label for="1Y">1</label>
+                            <input type="radio" name="ParametrY" id="1Y">
 
-                    <label for="1.5Y">1.5</label>
-                    <input type="radio" name="ParametrY" id="1.5Y">
+                            <label for="1.5Y">1.5</label>
+                            <input type="radio" name="ParametrY" id="1.5Y">
 
-                    <label for="2Y">2</label>
-                    <input type="radio" name="ParametrY" id="2Y">
+                            <label for="2Y">2</label>
+                            <input type="radio" name="ParametrY" id="2Y">
+                        </div>
+                    </div>
 
+                    <div id="parametrRSection">
+                        <legend>Параметр R</legend>
 
-                    <legend>Параметр R</legend>
+                        <label for="1R">1</label>
+                        <input type="radio" name="ParametrR" id="1R" required>
+                        <label for="1.5R">1.5</label>
+                        <input type="radio" name="ParametrR" id="1.5R">
+                        <label for="2R">2</label>
+                        <input type="radio" name="ParametrR" id="2R">
+                        <label for="2.5R">2.5</label>
+                        <input type="radio" name="ParametrR" id="2.5R">
+                        <label for="3R">3</label>
+                        <input type="radio" name="ParametrR" id="3R">
+                    </div>
 
-                    <label for="1R">1</label>
-                    <input type="radio" name="ParametrR" id="1R" required>
-                    <label for="1.5R">1.5</label>
-                    <input type="radio" name="ParametrR" id="1.5R">
-                    <label for="2R">2</label>
-                    <input type="radio" name="ParametrR" id="2R">
-                    <label for="2.5R">2.5</label>
-                    <input type="radio" name="ParametrR" id="2.5R">
-                    <label for="3R">3</label>
-                    <input type="radio" name="ParametrR" id="3R">
+                    <div id="parametrXSection" class="parametrXSection">
+                        <label for="x">Параметр X</label>
+                        <input type="text" id="x" placeholder="Введите X" required value="-5" required>
+                    </div>
                 
                     <button type="submit">Выстрел</button>
-                    
                 </form>
             </td>
-            <td><Canvas id="coordinatePlane" width="400" height="400"></Canvas></td>
-            
+            <td class="coordinateDiv", id="coordinateDiv">
+                <Canvas id="coordinatePlane" width="400" height="400"></Canvas>
+            </td>
         </tr>
         <tr>
             <td colspan="2" align="center" bgcolor="#f0f0f0">
@@ -90,5 +100,8 @@
                     </tbody>
                 </table>
             </td>
+        </tr>
+    </table>
+    <script src="./script.js"></script>
 </body>
 </html>
