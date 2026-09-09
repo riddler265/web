@@ -1,6 +1,10 @@
-.header {
+/* html {
     font-family: cursive;
-    color: rgb(255, 205, 0);
+    color: rgb(126, 111, 49);
+
+}
+
+.header {
     font-size: 24px;  
     text-align: left;
     padding-left: 25px;
@@ -9,33 +13,62 @@
     background-color: rgb(237, 50, 55);
 }
 
-.coordinateDiv {
-    box-sizing: border-box;
-    padding: 0px;
+.coordinateTd {
     border: 5px, solid, rgb(24, 21, 4);
     border-radius: 5px;
     width: 400px;
     height: 400px;
 }
 
-form {
+.shootForm {
     font-family: cursive;
     font-size: 15px;
     font-weight: 900;
     color: rgb(126, 111, 49);
+    height: 400px;
+}
+
+.parametrYSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .parametrYSection input[type="radio"] {
-    display: none;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(0, 0, 0);
+}
+
+label {
+    cursor: pointer;
+    color: rgb(1, 17, 0);
+}
+
+label:active {
+    color: rgb(17, 255, 0);
 }
 
 .parametrYSection label {
-    display: inline-block; /* ← ГЛАВНОЕ! */
+    display: inline-block;
     width: 40px;
     height: 40px;
     text-align: center;
+    line-height: 40px;
     border: 2px, solid, rgb(169, 149, 67);
     border-radius: 5px;
+    background-color: rgb(169, 149, 67);
+    margin: 5px 5px 0 0;
+}
+
+.parametrYSection label:hover {
+    border: 2px, solid, rgb(146, 129, 58);
+    background-color: rgb(169, 149, 67);
+}
+
+.parametrYSection div {
+    display: flex;
+    align-items: flex-start;
 }
 
 body {
@@ -47,7 +80,6 @@ table {
     background-color: rgb(204, 179, 80);
     border: 10px, solid, rgb(204, 179, 80);
     border-radius: 25px;
-    width: 700px;
+    width: 800px;
     margin: 0 auto;
-}
-
+} */
