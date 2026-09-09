@@ -13,6 +13,8 @@ const ctx = canvas.getContext('2d');
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 
+const hitRecordTable = document.getElementById('hitRecordTable');
+
 const shootForm = document.getElementById('shootForm');
 
 drawPlane();
@@ -30,13 +32,15 @@ shootForm.addEventListener('submit', function(event) {
 
         const dot = new Dot(parametrX, parametrY);
 
-        console.log(isHit(dot));
+        console.log(parametrR);
 
-        hitRecordSet.add(new HitRecord(dot, parametrR, 
+        const hitRecord = new HitRecord(dot, parametrR, 
             isHit(dot),
             new Date().toLocaleTimeString('ru-RU'))
-        )
 
+        hitRecordSet.add(hitRecord);
+
+        createHitRecord(hitRecord);
         drawPlane();
     } catch (error) {
         alert(error.message);
@@ -47,7 +51,7 @@ function setRadius(multiplier) {
     for (let i = 0; i < availableRadiusMultipliers.length; i++) {
         if (multiplier == availableRadiusMultipliers[i]) {
             radius = division * Number(multiplier);
-            return;
+            return Number(multiplier);
         }
     } throw new Error('Неподходящее значениие параметра R!');
 }
@@ -146,6 +150,28 @@ function drawPlane() {
         hitRecord.dot.draw();
     }
 
+}
+
+function createHitRecord(hitRecord) {
+    const tr = document.createElement('tr');
+    const tdX = document.createElement('td');
+    tdX.textContent = hitRecord.dot.x;
+    const tdY = document.createElement('td');
+    tdY.textContent = hitRecord.dot.y;
+    const tdR = document.createElement('td');
+    tdR.textContent = hitRecord.radius;
+    const tdHit = document.createElement('td');
+    tdHit.textContent = hitRecord.hit ? 'Попадание' : 'Промах';
+    const tdTimestamp = document.createElement('td');
+    tdTimestamp.textContent = hitRecord.timestamp;
+
+    tr.appendChild(tdX);
+    tr.appendChild(tdY);
+    tr.appendChild(tdR);
+    tr.appendChild(tdHit);
+    tr.appendChild(tdTimestamp);
+
+    hitRecordTable.prepend(tr);
 }
 
 class Dot {
