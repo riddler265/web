@@ -1,3 +1,70 @@
+body {
+    margin: 0;
+}
+
+table {
+    margin: 0 auto;
+}
+
+table {
+    background-color: rgb(212, 185, 77);
+}
+
+.header {
+    font-family: cursive;
+    text-align: left;
+    flex-direction: row;
+
+}
+
+.formTd {
+    display: flex;
+    align-items: flex-start;
+    width: 200px;
+}
+
+.formTd div {
+    margin-bottom: 20px;
+}
+
+.formTd legend, .labelForX {
+    font-size: 20px;
+}
+
+.yButton {
+    width: 40px;
+    height: 40px;
+    border: 2px, solid, rgb(152, 132, 53);
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-end; /* прижать вправо по горизонтали */
+    align-items: flex-end;
+    text-align: center;
+}
+
+.yButton:hover {
+    border: 2px, solid, rgb(152, 132, 53);
+    background-color: rgb(169, 149, 67);
+}
+
+input:checked {
+    accent-color: rgb(17, 255, 0);
+}
+
+.parametrYSection input {
+}
+
+.parametrXSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.coordinatePlane {
+    border: 5px, solid, black;
+    border-radius: 10px;
+    margin: 0 10px 0 0;
+}
+
 /* html {
     font-family: cursive;
     color: rgb(126, 111, 49);
