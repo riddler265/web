@@ -20,38 +20,67 @@ table {
 .formTd {
     display: flex;
     align-items: flex-start;
-    width: 200px;
 }
 
-.formTd div {
-    margin-bottom: 20px;
-}
 
 .formTd legend, .labelForX {
     font-size: 20px;
 }
 
-.yButton {
+.clearYButton {
     width: 40px;
     height: 40px;
+}
+
+.parametrYSection {
+    display: grid;
+    place-items: center;
+}
+
+.yButtonSection {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.yButton {
+    width: 50px;
+    height: 50px;
     border: 2px, solid, rgb(152, 132, 53);
     border-radius: 5px;
     display: flex;
-    justify-content: flex-end; /* прижать вправо по горизонтали */
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    margin-right: 5px;
 }
 
 .yButton:hover {
     border: 2px, solid, rgb(152, 132, 53);
     background-color: rgb(169, 149, 67);
 }
-
-input:checked {
-    accent-color: rgb(17, 255, 0);
+.yButton:active {
+    border: 2px, solid, rgb(51, 41, 3);
+    background-color: rgb(169, 149, 67);
 }
 
-.parametrYSection input {
+label {
+    cursor: pointer;
+    color: rgb(1, 17, 0);
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+input[type="radio"]:checked {
+    accent-color: rgb(17, 165, 6);
+
+}
+
+.parametrRSection {
+    display: grid;
+    place-items: center;
 }
 
 .parametrXSection {
