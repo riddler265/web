@@ -2,7 +2,7 @@ const availableRadiusMultipliers = [1, 1.5, 2, 2.5, 3];
 const availableY = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2];
 const hitRecordSet = new Set();
 
-const division = 100;
+const division = 110;
 const unitCount = 10;
 const margin = 10;
 let radius = division * 2;
@@ -32,8 +32,6 @@ shootForm.addEventListener('submit', function(event) {
 
         const dot = new Dot(parametrX, parametrY);
 
-        console.log(parametrR);
-
         const hitRecord = new HitRecord(dot, parametrR, 
             isHit(dot),
             new Date().toLocaleTimeString('ru-RU'))
@@ -57,7 +55,7 @@ function setRadius(multiplier) {
 }
 
 function validateX(x) {
-    if (x > -5 || x < 3) return Number(x);
+    if (x > -5 && x < 3) return Number(x);
     throw new Error('Неподходящее значение параметра X!')
 }
 
@@ -71,8 +69,9 @@ function isHit(dot) {
     let x = dot.x;
     let y = dot.y;
 
-    if (x > 0 && y >= 0 && y <= -x + 1) return true;
-    if (x <= 0 && x >= -1 && y <= 1) return true;
+    if (x >= 0 && y >= 0 && y >= (-x + 1) * radius / division) return true;
+    if (x <= 0 && x >= -radius / division && y >= radius / division) return true;
+    return false;
 }
 
 function drawPlane() {
@@ -131,7 +130,7 @@ function drawPlane() {
         }
     }
 
-    for (let i = -7; i < 8; i++) {
+    for (let i = -6; i < 7; i++) {
 
         if (i != 0) {
             ctx.moveTo(centerX + 3, centerY + i * division / 2);
