@@ -1,11 +1,6 @@
-const availableRadiusMultipliers = [1, 1.5, 2, 2.5, 3];
+const availableR = [1, 1.5, 2, 2.5, 3];
 const availableY = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2];
 const hitRecordSet = new Set();
-
-const division = 110;
-const unitCount = 10;
-const margin = 10;
-let radius = division * 2;
 
 const canvas = document.getElementById('coordinatePlane');
 const ctx = canvas.getContext('2d');
@@ -17,7 +12,7 @@ const hitRecordTable = document.getElementById('hitRecordTable');
 
 const shootForm = document.getElementById('shootForm');
 
-drawPlane();
+drawPlane(1);
 
 shootForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -26,33 +21,24 @@ shootForm.addEventListener('submit', function(event) {
     try {
         const formData = new FormData(this);
 
-        const parametrR = setRadius(formData.get('ParametrR'));
+        const parametrR = validateR(formData.get('ParametrR'));
         const parametrX = validateX(formData.get('ParametrX'));
         const parametrY = validateY(formData.get('ParametrY'));
 
         const dot = new Dot(parametrX, parametrY);
 
         const hitRecord = new HitRecord(dot, parametrR, 
-            isHit(dot),
+            isHit(dot, parametrR),
             new Date().toLocaleTimeString('ru-RU'))
 
         hitRecordSet.add(hitRecord);
 
         createHitRecord(hitRecord);
-        drawPlane();
+        drawPlane(parametrR);
     } catch (error) {
         alert(error.message);
     }
 })
-
-function setRadius(multiplier) {
-    for (let i = 0; i < availableRadiusMultipliers.length; i++) {
-        if (multiplier == availableRadiusMultipliers[i]) {
-            radius = division * Number(multiplier);
-            return Number(multiplier);
-        }
-    } throw new Error('Неподходящее значениие параметра R!');
-}
 
 function validateX(x) {
     if (x > -5 && x < 3) return Number(x);
@@ -65,17 +51,28 @@ function validateY(y) {
     } throw new Error('Неподходящее значение параметра Y!');
 }
 
-function isHit(dot) {
+function validateR(multiplier) {
+    for (let i = 0; i < availableR.length; i++) {
+        if (multiplier == availableR[i]) return Number(multiplier);
+    } throw new Error('Неподходящее значениие параметра R!');
+}
+
+function isHit(dot, parametrR) {
     let x = dot.x;
     let y = dot.y;
 
-    if (x >= 0 && y >= 0 && y >= (-x + 1) * radius / division) return true;
-    if (x <= 0 && x >= -radius / division && y >= radius / division) return true;
-    return false;
+    return (x >= 0 && y >= 0 && x + y <= parametrR) ||
+    (x <= 0 && x >= -parametrR && y >= 0 && y <= parametrR) ||
+    (x <= 0 && y <= 0 && x * x + y * y <= parametrR * parametrR);
 }
 
-function drawPlane() {
-    ctx.fillStyle = "rgb(1, 8, 0)";
+function drawPlane(parametrR) {
+
+    const margin = 10;
+    const division = 110;
+    const radius = division * parametrR;
+
+    ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.beginPath();
@@ -117,7 +114,7 @@ function drawPlane() {
     ctx.font = "10px Arial";
 
 
-    for (let i = -unitCount; i < unitCount + 1; i++) {
+    for (let i = -10; i < 11; i++) {
 
         if (i != 0) {
             ctx.moveTo(centerX + i * division / 2, centerY + 3);
@@ -146,7 +143,7 @@ function drawPlane() {
     ctx.beginPath();
 
     for (const hitRecord of hitRecordSet) {
-        hitRecord.dot.draw();
+        hitRecord.dot.draw(division);
     }
 
 }
@@ -180,7 +177,7 @@ class Dot {
         this.y = y;
     }
 
-    draw() {
+    draw(division) {
         ctx.beginPath();
         ctx.moveTo(centerX + division * this.x, centerY - division * this.y);
         ctx.arc(centerX + division * this.x, centerY - division * this.y, 4, 0, 2 * Math.PI);
