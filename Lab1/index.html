@@ -10,44 +10,62 @@
 <body>
     <table>
         <tr>
-            <td colspan="2" align="center" bgcolor="#f0f0f0" class="header">
+            <td colspan="2" class="header">
                 <h1>Копылов Егор Вадимович</h1>
                 <h2>P3208</h2>
                 <h2>12633</h2>
             </td>
         </tr>
         <tr>
-            <td class="formTd">
+            <td class="formTd" id="formTd">
                 <form action="" id="shootForm" class="shootForm">
                     <div id="parametrYSection" class="parametrYSection">
                         <legend>Параметр Y</legend>
 
-                        <label for="-2Y">-2</label>
-                        <input type="radio" name="ParametrY" id="-2Y" value="-2" required>
+                        <div class="yButtonSection">
+                            <div class="yButton">
+                                <label for="-2Y">-2</label>
+                                <input type="radio" name="ParametrY" id="-2Y" value="-2" required>
+                            </div>
+                            <div class="yButton">
+                                <label for="-1.5Y">-1.5</label>
+                                <input type="radio" name="ParametrY" id="-1.5Y" value="-1.5">
+                            </div>
+                            <div class="yButton">
+                                <label for="-1Y">-1</label>
+                                <input type="radio" name="ParametrY" id="-1Y" value="-1">
+                            </div>
+                        </div>
 
-                        <label for="-1.5Y">-1.5</label>
-                        <input type="radio" name="ParametrY" id="-1.5Y" value="-1.5">
+                        <div class="yButtonSection">
+                            <div class="yButton">
+                                <label for="-0.5Y">-0.5</label>
+                                <input type="radio" name="ParametrY" id="-0.5Y" value="-0.5">
+                            </div>
+                            <div class="yButton">
+                                <label for="0Y">0</label>
+                                <input type="radio" name="ParametrY" id="0Y" value="0">
+                            </div>
+                            <div class="yButton">
+                                <label for="0.5Y">0.5</label>
+                                <input type="radio" name="ParametrY" id="0.5Y" value="0.5">
+                            </div>
+                        </div>
 
-                        <label for="-1Y">-1</label>
-                        <input type="radio" name="ParametrY" id="-1Y" value="-1">
-
-                        <label for="-0.5Y">-0.5</label>
-                        <input type="radio" name="ParametrY" id="-0.5Y" value="-0.5">
-
-                        <label for="0Y">0</label>
-                        <input type="radio" name="ParametrY" id="0Y" value="0">
-
-                        <label for="0.5Y">0.5</label>
-                        <input type="radio" name="ParametrY" id="0.5Y" value="0.5">
-
-                        <label for="1Y">1</label>
-                        <input type="radio" name="ParametrY" id="1Y" value="1">
-
-                        <label for="1.5Y">1.5</label>
-                        <input type="radio" name="ParametrY" id="1.5Y" value="1.5">
-
-                        <label for="2Y">2</label>
-                        <input type="radio" name="ParametrY" id="2Y" value="2">
+                        <div class="yButtonSection">
+                            <div class="yButton">
+                                <label for="1Y">1</label>
+                                <input type="radio" name="ParametrY" id="1Y" value="1" checked>
+                            </div>
+                            <div class="yButton">
+                                <label for="1.5Y">1.5</label>
+                                <input type="radio" name="ParametrY" id="1.5Y" value="1.5">
+                            </div>
+                            <div class="yButton">
+                                <label for="2Y">2</label>
+                                <input type="radio" name="ParametrY" id="2Y" value="2">
+                            </div>
+                        </div>
                     </div>
 
 
@@ -61,7 +79,7 @@
                         <input type="radio" name="ParametrR" id="1.5R" value="1.5">
 
                         <label for="2R">2</label>
-                        <input type="radio" name="ParametrR" id="2R" value="2">
+                        <input type="radio" name="ParametrR" id="2R" value="2" checked>
 
                         <label for="2.5R">2.5</label>
                         <input type="radio" name="ParametrR" id="2.5R" value="2.5">
@@ -71,15 +89,15 @@
                     </div>
 
                     <div id="parametrXSection" class="parametrXSection">
-                        <label for="x">Параметр X</label>
-                        <input type="text" id="x" name="ParametrX" placeholder="Введите X" required value="0" required>
+                        <label for="parametrX" class="labelForX">Параметр X</label>
+                        <input type="text" id="parametrX" name="ParametrX" placeholder="Введите X" required value="1">
                     </div>
                 
                     <button type="submit">Выстрел</button>
                 </form>
             </td>
             <td class="coordinateTd", id="coordinateTd">
-                <Canvas id="coordinatePlane" width="1200" height="800"></Canvas>
+                <Canvas id="coordinatePlane" class="coordinatePlane" width="1200" height="800"></Canvas>
             </td>
         </tr>
         <tr>
