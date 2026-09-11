@@ -102,11 +102,18 @@ input[type="radio"]:checked {
     border-radius: 10px;
 }
 
-button {
-    width: 100%;
+.shootButton {
+    width: 70%;
     height: 40px;
     margin-bottom: 5px;
     border-radius: 10px;
+}
+
+.clearButton {
+    width: 25%;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
 
 /* html {

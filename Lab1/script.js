@@ -1,3 +1,5 @@
+
+
 const availableR = [1, 1.5, 2, 2.5, 3];
 const availableY = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2];
 const hitRecordSet = new Set();
@@ -11,9 +13,48 @@ const centerY = canvas.height / 2;
 const hitRecordTable = document.getElementById('hitRecordTable');
 
 const shootForm = document.getElementById('shootForm');
+const clearButton = document.querySelector('.clearButton');
 
-drawPlane(1);
+clearButton.addEventListener('click', function() {
+    hitRecordSet.clear();
+    localStorage.removeItem('hitRecordSet');
+    hitRecordTable.innerHTML = '';
+    drawPlane(1);
+});
+
+class Dot {
+
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    draw(division) {
+        ctx.beginPath();
+        ctx.moveTo(centerX + division * this.x, centerY - division * this.y);
+        ctx.arc(centerX + division * this.x, centerY - division * this.y, 4, 0, 2 * Math.PI);
+        ctx.fillStyle = 'rgb(145, 0, 0)';
+        ctx.strokeStyle = 'rgb(255, 255, 255)';
+        ctx.lineWidth = 2;
+        ctx.closePath;
+        ctx.stroke();
+        ctx.fill();
+        ctx.lineWidth = 1;
+    }
+}
+
+class HitRecord {
+
+    constructor(dot, radius, hit, timestamp) {
+        this.dot = dot;
+        this.radius = radius;
+        this.hit = hit;
+        this.timestamp = timestamp;
+    }
+}
+
 loadHitRecords();
+drawPlane(1);
 
 shootForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -160,7 +201,17 @@ function loadHitRecords() {
     }
 
     if (Array.isArray(hitRecordArray)) {
-        for (const hitRecord of hitRecordArray) {
+        for (const rawRecord of hitRecordArray) {
+            const dot = new Dot(rawRecord.dot.x, rawRecord.dot.y);
+            
+            // Воссоздаем экземпляр HitRecord
+            const hitRecord = new HitRecord(
+                dot, 
+                rawRecord.radius, 
+                rawRecord.hit, 
+                rawRecord.timestamp
+            );
+
             createHitRecord(hitRecord);
             hitRecordSet.add(hitRecord);
         }
@@ -190,33 +241,3 @@ function createHitRecord(hitRecord) {
     hitRecordTable.prepend(tr);
 }
 
-class Dot {
-
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    draw(division) {
-        ctx.beginPath();
-        ctx.moveTo(centerX + division * this.x, centerY - division * this.y);
-        ctx.arc(centerX + division * this.x, centerY - division * this.y, 4, 0, 2 * Math.PI);
-        ctx.fillStyle = 'rgb(145, 0, 0)';
-        ctx.strokeStyle = 'rgb(255, 255, 255)';
-        ctx.lineWidth = 2;
-        ctx.closePath;
-        ctx.stroke();
-        ctx.fill();
-        ctx.lineWidth = 1;
-    }
-}
-
-class HitRecord {
-
-    constructor(dot, radius, hit, timestamp) {
-        this.dot = dot;
-        this.radius = radius;
-        this.hit = hit;
-        this.timestamp = timestamp;
-    }
-}
