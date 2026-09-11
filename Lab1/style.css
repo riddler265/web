@@ -1,4 +1,5 @@
 body {
+    font-family: cursive;
     margin: 0;
 }
 
@@ -11,18 +12,20 @@ table {
 }
 
 .header {
-    font-family: cursive;
     text-align: left;
     flex-direction: row;
-
 }
 
 .formTd {
     display: flex;
     align-items: flex-start;
     padding-left: 10px;
+    padding-top: 5px;
     height: 100%;
-}
+    background-color: rgb(172, 149, 55);
+    border-radius: 10px;
+    margin: 0 10px 0 10px;
+}   
 
 
 .formTd legend, .labelForX {
@@ -54,7 +57,7 @@ table {
 .Button {
     width: 100%;
     height: 50px;
-    border: 2px, solid, rgb(152, 132, 53);
+    border: 2px, solid, rgb(34, 27, 2);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -78,7 +81,7 @@ label {
     color: rgb(1, 17, 0);
     font-size: 20px;
     width: 100%;
-    height: 50px;
+    height: 30px;
 }
 
 input[type="radio"]:checked {
@@ -86,14 +89,8 @@ input[type="radio"]:checked {
 
 }
 
-.parametrRSection {
-    display: grid;
-    place-items: center;
-}
-
-.parametrXSection {
-    display: flex;
-    flex-direction: column;
+.labelForX {
+    text-align: center;
 }
 
 .coordinateTd {
@@ -102,6 +99,13 @@ input[type="radio"]:checked {
 
 .coordinatePlane {
     border: 5px, solid, black;
+    border-radius: 10px;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 5px;
     border-radius: 10px;
 }
 
