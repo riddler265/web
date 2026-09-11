@@ -13,6 +13,7 @@ const hitRecordTable = document.getElementById('hitRecordTable');
 const shootForm = document.getElementById('shootForm');
 
 drawPlane(1);
+loadHitRecords();
 
 shootForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -34,6 +35,8 @@ shootForm.addEventListener('submit', function(event) {
         hitRecordSet.add(hitRecord);
 
         createHitRecord(hitRecord);
+
+        localStorage.setItem('hitRecordSet', JSON.stringify(Array.from(hitRecordSet)));
         drawPlane(parametrR);
     } catch (error) {
         alert(error.message);
@@ -144,6 +147,23 @@ function drawPlane(parametrR) {
 
     for (const hitRecord of hitRecordSet) {
         hitRecord.dot.draw(division);
+    }
+
+}
+
+function loadHitRecords() {
+    let hitRecordArray = [];
+    let hitRecordSetString = localStorage.getItem('hitRecordSet');
+
+    if (hitRecordSetString) {
+        hitRecordArray = JSON.parse(hitRecordSetString);
+    }
+
+    if (Array.isArray(hitRecordArray)) {
+        for (const hitRecord of hitRecordArray) {
+            createHitRecord(hitRecord);
+            hitRecordSet.add(hitRecord);
+        }
     }
 
 }
