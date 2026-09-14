@@ -10,6 +10,8 @@ const ctx = canvas.getContext('2d');
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 
+let lastParametrR;
+
 const hitRecordTable = document.getElementById('hitRecordTable');
 
 const shootForm = document.getElementById('shootForm');
@@ -19,7 +21,7 @@ clearButton.addEventListener('click', function() {
     hitRecordSet.clear();
     localStorage.removeItem('hitRecordSet');
     hitRecordTable.innerHTML = '';
-    drawPlane(1);
+    drawPlane(lastParametrR);
 });
 
 class Dot {
@@ -111,6 +113,7 @@ function isHit(dot, parametrR) {
 }
 
 function drawPlane(parametrR) {
+    lastParametrR = parametrR;
 
     const margin = 10;
     const division = 110;
@@ -204,7 +207,6 @@ function loadHitRecords() {
         for (const rawRecord of hitRecordArray) {
             const dot = new Dot(rawRecord.dot.x, rawRecord.dot.y);
             
-            // Воссоздаем экземпляр HitRecord
             const hitRecord = new HitRecord(
                 dot, 
                 rawRecord.radius, 
