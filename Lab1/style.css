@@ -59,6 +59,7 @@ table {
     height: 50px;
     border: 2px, solid, rgb(34, 27, 2);
     border-radius: 5px;
+    /* background-color: rgb(1, 17, 0); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,12 +69,12 @@ table {
 
 .Button:hover {
     border: 2px, solid, rgb(152, 132, 53);
-    background-color: rgb(169, 149, 67);
+    background-color: rgb(190, 163, 58);
 }
 
 .Button:active {
     border: 2px, solid, rgb(51, 41, 3);
-    background-color: rgb(169, 149, 67);
+    background-color: rgb(147, 127, 48);
 }
 
 label {
@@ -84,9 +85,17 @@ label {
     height: 30px;
 }
 
+input {
+    width: 100%;
+}
+
+::selection {
+  background: rgb(7, 57, 3);
+  color: rgb(17, 165, 6);
+}
+
 input[type="radio"]:checked {
     accent-color: rgb(17, 165, 6);
-
 }
 
 .labelForX {
@@ -103,101 +112,24 @@ input[type="radio"]:checked {
 }
 
 .shootButton {
-    width: 70%;
+    width: 69%;
     height: 40px;
     margin-bottom: 5px;
     border-radius: 10px;
 }
 
 .clearButton {
-    width: 25%;
+    width: 29%;
     height: 40px;
     border-radius: 10px;
     margin-bottom: 5px;
+    margin-left: 2%;
 }
 
-/* html {
-    font-family: cursive;
-    color: rgb(126, 111, 49);
-
-}
-
-.header {
-    font-size: 24px;  
-    text-align: left;
-    padding-left: 25px;
-    border: 25px, solid, rgb(189, 45, 50);
+.hitRecordTable {
+    width: 100%;
+    box-sizing: border-box; /* Важно: включает padding и border в общую ширину 100% */
+    border: 5px solid rgb(172, 149, 55); /* Убраны запятые */
     border-radius: 5px;
-    background-color: rgb(237, 50, 55);
+    background-color: rgb(172, 149, 55);
 }
-
-.coordinateTd {
-    border: 5px, solid, rgb(24, 21, 4);
-    border-radius: 5px;
-    width: 400px;
-    height: 400px;
-}
-
-.shootForm {
-    font-family: cursive;
-    font-size: 15px;
-    font-weight: 900;
-    color: rgb(126, 111, 49);
-    height: 400px;
-}
-
-.parametrYSection {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.parametrYSection input[type="radio"] {
-    width: 10px;
-    height: 10px;
-    background-color: rgb(0, 0, 0);
-}
-
-label {
-    cursor: pointer;
-    color: rgb(1, 17, 0);
-}
-
-label:active {
-    color: rgb(17, 255, 0);
-}
-
-.parametrYSection label {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    border: 2px, solid, rgb(169, 149, 67);
-    border-radius: 5px;
-    background-color: rgb(169, 149, 67);
-    margin: 5px 5px 0 0;
-}
-
-.parametrYSection label:hover {
-    border: 2px, solid, rgb(146, 129, 58);
-    background-color: rgb(169, 149, 67);
-}
-
-.parametrYSection div {
-    display: flex;
-    align-items: flex-start;
-}
-
-body {
-    margin: 0 auto;
-}
-
-table {
-    border-spacing: 5px;
-    background-color: rgb(204, 179, 80);
-    border: 10px, solid, rgb(204, 179, 80);
-    border-radius: 25px;
-    width: 800px;
-    margin: 0 auto;
-} */
