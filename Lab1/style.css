@@ -34,6 +34,8 @@ table {
 
 .shootForm {
     padding-right: 5px;
+    width: 400px;
+    height: 500px;
 }
 
 .clearYButton {
@@ -89,6 +91,26 @@ input {
     width: 100%;
 }
 
+button {
+    cursor: pointer;
+    color: rgb(104, 253, 81);
+    background-color: rgb(1, 17, 0);
+    font-size: 14px;
+    border: 0px
+}
+
+button:hover {
+    color: rgb(84, 203, 66);
+}
+
+button:active {
+    color: rgb(104, 253, 81);
+}
+
+img {
+    color: rgb(104, 253, 81);
+}
+
 ::selection {
   background: rgb(7, 57, 3);
   color: rgb(17, 165, 6);
@@ -100,6 +122,19 @@ input[type="radio"]:checked {
 
 .labelForX {
     text-align: center;
+}
+
+.parametrXSection {
+    text-align: center;
+}
+
+.parametrXInput {
+    border-radius: 5px; 
+    height:40px;
+    width: 400px;
+    padding: 0;
+    border-radius: 5px;
+    border: 0px;
 }
 
 .coordinateTd {

@@ -116,7 +116,7 @@ function drawPlane(parametrR) {
     lastParametrR = parametrR;
 
     const margin = 10;
-    const division = 110;
+    const division = 73; //110;
     const radius = division * parametrR;
 
     ctx.fillStyle = "rgb(0, 0, 0)";
