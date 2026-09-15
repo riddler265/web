@@ -96,7 +96,8 @@ button {
     color: rgb(104, 253, 81);
     background-color: rgb(1, 17, 0);
     font-size: 14px;
-    border: 0px
+    border: 0px;
+    border-radius: 5px;
 }
 
 button:hover {
@@ -160,7 +161,7 @@ input[type="radio"]:checked {
     margin-bottom: 5px;
     margin-left: 2%;
 }
-
+    
 .hitRecordTable {
     width: 100%;
     box-sizing: border-box; /* Важно: включает padding и border в общую ширину 100% */
