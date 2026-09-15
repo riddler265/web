@@ -17,13 +17,6 @@ const hitRecordTable = document.getElementById('hitRecordTable');
 const shootForm = document.getElementById('shootForm');
 const clearButton = document.querySelector('.clearButton');
 
-clearButton.addEventListener('click', function() {
-    hitRecordSet.clear();
-    localStorage.removeItem('hitRecordSet');
-    hitRecordTable.innerHTML = '';
-    drawPlane(lastParametrR);
-});
-
 class Dot {
 
     constructor(x, y) {
@@ -47,16 +40,16 @@ class Dot {
 
 class HitRecord {
 
-    constructor(dot, radius, hit, timestamp) {
+    constructor(dot, radius, timestamp) {
         this.dot = dot;
         this.radius = radius;
-        this.hit = hit;
+        this.hit = isHit(dot, radius);
         this.timestamp = timestamp;
     }
 }
 
 loadHitRecords();
-drawPlane(1);
+drawPlane(getLastParametrR());
 
 shootForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -69,22 +62,34 @@ shootForm.addEventListener('submit', function(event) {
         const parametrX = validateX(formData.get('ParametrX'));
         const parametrY = validateY(formData.get('ParametrY'));
 
-        const dot = new Dot(parametrX, parametrY);
-
-        const hitRecord = new HitRecord(dot, parametrR, 
-            isHit(dot, parametrR),
-            new Date().toLocaleTimeString('ru-RU'))
+        const hitRecord = new HitRecord(new Dot(parametrX, parametrY), parametrR, new Date().toLocaleTimeString('ru-RU'))
 
         hitRecordSet.add(hitRecord);
-
         createHitRecord(hitRecord);
-
-        localStorage.setItem('hitRecordSet', JSON.stringify(Array.from(hitRecordSet)));
+        saveData(parametrR);
         drawPlane(parametrR);
     } catch (error) {
         alert(error.message);
     }
 })
+
+clearButton.addEventListener('click', function() {
+    hitRecordSet.clear();
+    localStorage.removeItem('hitRecordSet');
+    hitRecordTable.innerHTML = `<table width="100%" border="1" cellspacing="0" cellpadding="10" id="hitRecordTable" class="hitRecordTable">
+                    <thead>
+                        <tr>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>R</th>
+                            <th>Попадание</th>
+                            <th>Время</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                    </tbody>`;
+    drawPlane(lastParametrR);
+});
 
 function validateX(x) {
     if (x > -5 && x < 3) return Number(x);
@@ -116,7 +121,7 @@ function drawPlane(parametrR) {
     lastParametrR = parametrR;
 
     const margin = 10;
-    const division = 73; //110;
+    const division = 75;
     const radius = division * parametrR;
 
     ctx.fillStyle = "rgb(0, 0, 0)";
@@ -147,14 +152,14 @@ function drawPlane(parametrR) {
     ctx.moveTo(centerX - 5, margin + 5);
     ctx.lineTo(centerX, margin);
     ctx.lineTo(centerX + 5, margin + 5);
-    ctx.fillText('Y', centerX + 10, margin + 15);
+    ctx.fillText('Y', centerX + 10, margin + 7);
 
     ctx.moveTo(margin, centerY);
     ctx.lineTo(canvas.width - margin, centerY);
     ctx.lineTo(canvas.width - margin - 5, centerY + 5);
     ctx.moveTo(canvas.width - margin, centerY);
     ctx.lineTo(canvas.width - 5 - margin, centerY - 5);
-    ctx.fillText('X', canvas.width - margin - 15, centerY - 10)
+    ctx.fillText('X', canvas.width - margin - 5, centerY + 20)
     ctx.stroke();   
 
     ctx.beginPath();
@@ -209,8 +214,7 @@ function loadHitRecords() {
             
             const hitRecord = new HitRecord(
                 dot, 
-                rawRecord.radius, 
-                rawRecord.hit, 
+                rawRecord.radius,  
                 rawRecord.timestamp
             );
 
@@ -243,3 +247,11 @@ function createHitRecord(hitRecord) {
     hitRecordTable.prepend(tr);
 }
 
+function getLastParametrR() {
+    return lastParametrR = JSON.parse(localStorage.getItem('lastParametrR'));
+}
+
+function saveData(parametrR) {
+    localStorage.setItem('hitRecordSet', JSON.stringify(Array.from(hitRecordSet)));
+    localStorage.setItem('lastParametrR', JSON.stringify(parametrR));
+}
