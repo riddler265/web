@@ -34,6 +34,7 @@ table {
 
 .shootForm {
     padding: 10px 5px 0 10px;
+    height: 100%;
 }
 
 .formTd legend {
@@ -110,10 +111,6 @@ button:active {
     color: rgb(104, 253, 81);
 }
 
-img {
-    color: rgb(104, 253, 81);
-}
-
 ::selection {
   background: rgb(7, 57, 3);
   color: rgb(17, 165, 6);
@@ -135,6 +132,14 @@ input[type="radio"]:checked {
     border-radius: 5px;
     border: 0px;
     font-size: 20px;
+}
+
+.parametrXInput::placeholder {
+    color: black;
+}
+
+.parametrXInput.error::placeholder {
+    color: crimson;
 }
 
 .coordinateTd {

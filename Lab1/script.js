@@ -17,6 +17,8 @@ const hitRecordTable = document.getElementById('hitRecordTable');
 const shootForm = document.getElementById('shootForm');
 const clearButton = document.querySelector('.clearButton');
 
+const inputX = document.querySelector('.parametrXInput');
+
 class Dot {
 
     constructor(x, y) {
@@ -68,8 +70,12 @@ shootForm.addEventListener('submit', function(event) {
         createHitRecord(hitRecord);
         saveData(parametrR);
         drawPlane(parametrR);
+        inputX.classList.remove('error');
+        inputX.setAttribute('placeholder', 'Введите X');
     } catch (error) {
-        alert(error.message);
+        inputX.value = '';
+        inputX.classList.add('error');
+        inputX.setAttribute('placeholder', 'Неподходящее значение!');
     }
 })
 
