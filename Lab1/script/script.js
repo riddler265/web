@@ -1,4 +1,6 @@
+import Decimal from 'https://cdn.jsdelivr.net/npm/decimal.js@10.4.3/+esm';
 
+//import { calculateColors } from './calculateColors.js';
 
 const availableR = [1, 1.5, 2, 2.5, 3];
 const availableY = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2];
@@ -30,7 +32,7 @@ class Dot {
         ctx.beginPath();
         ctx.moveTo(centerX + division * this.x, centerY - division * this.y);
         ctx.arc(centerX + division * this.x, centerY - division * this.y, 4, 0, 2 * Math.PI);
-        ctx.fillStyle = 'rgb(145, 0, 0)';
+        ctx.fillStyle = '#ad3b3b';
         ctx.strokeStyle = 'rgb(255, 255, 255)';
         ctx.lineWidth = 2;
         ctx.closePath;
@@ -62,7 +64,7 @@ shootForm.addEventListener('submit', function(event) {
 
         const parametrR = validateR(formData.get('ParametrR'));
         const parametrX = validateX(formData.get('ParametrX'));
-        const parametrY = validateY(formData.get('ParametrY'));
+        const parametrY = validateY(formData.get('ParametrY')); 
 
         const hitRecord = new HitRecord(new Dot(parametrX, parametrY), parametrR, Date.now())
 
@@ -98,8 +100,17 @@ clearButton.addEventListener('click', function() {
 });
 
 function validateX(x) {
-    if (x > -5 && x < 3) return Number(x);
-    throw new Error('Неподходящее значение параметра X!')
+    const lowBound = new Decimal(-5);
+    const upBound = new Decimal(3);
+
+    try {
+        const validX = new Decimal(x);
+
+        if (validX.gt(lowBound) && validX.lt(upBound)) return validX;
+        else throw new Error('Неподходящее значение параметра X!');
+    } catch (error) {
+        throw new Error('Неподходящее значение параметра X!');
+    }
 }
 
 function validateY(y) {
@@ -115,12 +126,15 @@ function validateR(multiplier) {
 }
 
 function isHit(dot, parametrR) {
+    const r = new Decimal(parametrR);
     let x = dot.x;
     let y = dot.y;
 
-    return (x >= 0 && y >= 0 && x + y <= parametrR) ||
-    (x <= 0 && x >= -parametrR && y >= 0 && y <= parametrR) ||
-    (x <= 0 && y <= 0 && x * x + y * y <= parametrR * parametrR);
+    console.log(typeof x);
+
+    return (x >= 0 && y >= 0 && x + y <= r) ||
+    (x <= 0 && x >= -r && y >= 0 && y <= r) ||
+    (x <= 0 && y <= 0 && x * x + y * y <= r * r);
 }
 
 function drawPlane(parametrR) {
@@ -216,7 +230,7 @@ function loadHitRecords() {
 
     if (Array.isArray(hitRecordArray)) {
         for (const rawRecord of hitRecordArray) {
-            const dot = new Dot(rawRecord.dot.x, rawRecord.dot.y);
+            const dot = new Dot(new Decimal(rawRecord.dot.x), rawRecord.dot.y);
             
             const hitRecord = new HitRecord(
                 dot, 
