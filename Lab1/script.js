@@ -64,7 +64,7 @@ shootForm.addEventListener('submit', function(event) {
         const parametrX = validateX(formData.get('ParametrX'));
         const parametrY = validateY(formData.get('ParametrY'));
 
-        const hitRecord = new HitRecord(new Dot(parametrX, parametrY), parametrR, new Date().toLocaleTimeString('ru-RU'))
+        const hitRecord = new HitRecord(new Dot(parametrX, parametrY), parametrR, Date.now())
 
         hitRecordSet.add(hitRecord);
         createHitRecord(hitRecord);
@@ -242,7 +242,7 @@ function createHitRecord(hitRecord) {
     const tdHit = document.createElement('td');
     tdHit.textContent = hitRecord.hit ? 'Попадание' : 'Промах';
     const tdTimestamp = document.createElement('td');
-    tdTimestamp.textContent = hitRecord.timestamp;
+    tdTimestamp.textContent = new Date(hitRecord.timestamp).toLocaleString('ru-RU');
 
     tr.appendChild(tdX);
     tr.appendChild(tdY);
