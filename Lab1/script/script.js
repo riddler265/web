@@ -1,10 +1,12 @@
 import Decimal from 'https://cdn.jsdelivr.net/npm/decimal.js@10.4.3/+esm';
 
-import { toggleActionMode } from './methods/toggleActionMode.js';
-import { drawDots, drawPlane } from './methods/draw.js';
+import { applyActionMode, toggleActionMode } from './methods/toggleActionMode.js';
+import { drawDots, drawPlane, drawExplosions } from './methods/draw.js';
 import { validateY, validateR, validateX } from './methods/validators.js';
 import { HitRecord } from './classes/hitRecord.js';
 import { Dot } from './classes/dot.js';
+import { STATE, saveParametrX, saveParametrY, saveParametrR } from './state/state.js';
+import { syncInputs } from './methods/syncInputs.js';
 
 
 const hitRecordSet = new Set();
@@ -22,15 +24,13 @@ init();
 
 shootForm.addEventListener('submit', function(event) {
     event.preventDefault();
-
-
     try {
 
         const formData = new FormData(this);
 
-        const parametrR = validateR(formData.get('ParametrR'));
-        const parametrX = validateX(formData.get('ParametrX'));
-        const parametrY = validateY(formData.get('ParametrY'));
+        const parametrR = saveParametrR(validateR(formData.get('ParametrR')));
+        const parametrX = saveParametrX(validateX(formData.get('ParametrX')));
+        const parametrY = saveParametrY(validateY(formData.get('ParametrY')));
 
         console.log(`Получены параметры.\nX: ${parametrX}\nY: ${parametrY}\nRadius: ${parametrR}`);
 
@@ -60,8 +60,8 @@ shootForm.addEventListener('submit', function(event) {
 clearButton.addEventListener('click', function() {
     hitRecordSet.clear();
     localStorage.removeItem('hitRecordSet');
-    hitRecordTable.innerHTML = `<table width="100%" border="1" cellspacing="0" cellpadding="10" id="hitRecordTable" class="hitRecordTable">
-                    <thead>
+    hitRecordTable.innerHTML = `
+    <thead id="HitRecordThead">
                         <tr>
                             <th>X</th>
                             <th>Y</th>
@@ -70,23 +70,31 @@ clearButton.addEventListener('click', function() {
                             <th>Время</th>
                         </tr>
                     </thead>
-                    <tbody id="resultsTableBody">
-                    </tbody>`;
-    drawPlane(JSON.parse(localStorage.getItem('lastParametrR')));
+                    `;
+    drawPlane(STATE.parametrR);
 });
 
 toggleButton.addEventListener('click', function() {
     toggleActionMode();
-    drawPlane(JSON.parse(localStorage.getItem('lastParametrR')));
-    drawDots(hitRecordSet);
+
+    if(STATE.actionMode) {
+        const boom = drawExplosions(
+            STATE.parametrR, 
+            hitRecordSet, 
+            {count: 100}
+        );
+        boom.start();
+    } else {
+        drawPlane(STATE.parametrR);
+        drawDots(hitRecordSet);
+    }
 });
 
 function init() {
-    toggleActionMode();
-    toggleActionMode();
-    drawPlane(JSON.parse(localStorage.getItem('lastParametrR') ?? '1'));
-
+    applyActionMode();
+    drawPlane(STATE.parametrR);
     drawDots(hitRecordSet);
+    syncInputs();
 }
 
 function loadHitRecords() {
@@ -138,5 +146,4 @@ function createHitRecord(hitRecord) {
 
 function saveData(parametrR) {
     localStorage.setItem('hitRecordSet', JSON.stringify(Array.from(hitRecordSet)));
-    localStorage.setItem('lastParametrR', JSON.stringify(parametrR));
 }
