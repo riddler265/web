@@ -1,8 +1,8 @@
 import Decimal from 'https://cdn.jsdelivr.net/npm/decimal.js@10.4.3/+esm';
 
-import { toggleActionMode } from './toggleActionMode.js';
-import { drawDots, drawPlane } from './draw.js';
-import { validateY, validateR, validateX } from './validators.js';
+import { toggleActionMode } from './methods/toggleActionMode.js';
+import { drawDots, drawPlane } from './methods/draw.js';
+import { validateY, validateR, validateX } from './methods/validators.js';
 import { HitRecord } from './classes/hitRecord.js';
 import { Dot } from './classes/dot.js';
 
