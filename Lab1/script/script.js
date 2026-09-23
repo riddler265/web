@@ -1,6 +1,6 @@
 import Decimal from 'https://cdn.jsdelivr.net/npm/decimal.js@10.4.3/+esm';
 
-//import { calculateColors } from './calculateColors.js';
+import { toggleActionMode } from './toggleActionMode.js';
 
 const availableR = [1, 1.5, 2, 2.5, 3];
 const availableY = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2];
@@ -18,6 +18,7 @@ const hitRecordTable = document.getElementById('hitRecordTable');
 
 const shootForm = document.getElementById('shootForm');
 const clearButton = document.querySelector('.clearButton');
+const toggleButton = document.querySelector('toggleButton');
 
 const inputX = document.querySelector('.parametrXInput');
 
@@ -98,6 +99,8 @@ clearButton.addEventListener('click', function() {
                     </tbody>`;
     drawPlane(lastParametrR);
 });
+
+toggleButton.addEventListener('click', toggleActionMode());
 
 function validateX(x) {
     const lowBound = new Decimal(-5);

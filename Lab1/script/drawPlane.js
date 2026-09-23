@@ -1,6 +1,8 @@
-import { calculateColors } from "./calculateColors";
+function drawPlane(ctx, division) {
 
-function drawPlane(ctx, color, parametrR) {
+    const fillColor = localStorage.getItem('fillColor') ?? '#216817';
+    const borderColor = localStorage.getItem('borderColor') ?? '#68fd51';
+    const radius = localStorage.getItem('radius') ?? '1';
 
-    
+
 }

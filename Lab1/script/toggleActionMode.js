@@ -1,4 +1,4 @@
-function toogleActionMode() {
+export function toogleActionMode() {
     let isActionMode = localStorage.getItem('isActionMode') ?? false;
 
     if (isActionMode) {
