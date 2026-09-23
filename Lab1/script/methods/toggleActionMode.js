@@ -1,16 +1,22 @@
-export function toggleActionMode() {
-    const isActionMode = JSON.parse(localStorage.getItem('isActionMode') ?? 'false');
+import { STATE, toggleStateActionMode, saveFillColor, saveStrokeColor } from "../state/state.js";
 
-    if (isActionMode) {
-        localStorage.setItem('fillColor', '#3124c7');
-        localStorage.setItem('strokeColor', '#38aef2');
-        document.documentElement.style.setProperty('--fill-color', '#3124c7');
-        document.documentElement.style.setProperty('--stroke-color', '#38aef2');
+const style = document.documentElement.style;
+
+export function applyActionMode() {
+    const actionMode = STATE.actionMode;
+    if (actionMode) {
+        style.setProperty('--fillColor', saveFillColor('#3124c7'));
+        style.setProperty('--strokeColor', saveStrokeColor('#38aef2'));
     } else {
-        localStorage.setItem('fillColor', '#216817');
-        localStorage.setItem('strokeColor', '#68fd51');
-        document.documentElement.style.setProperty('--fill-color', '#216817');
-        document.documentElement.style.setProperty('--stroke-color', '#68fd51');
+        style.setProperty('--fillColor', saveFillColor('#216817'));
+        style.setProperty('--strokeColor', saveStrokeColor('#68fd51'));
     }
-    localStorage.setItem('isActionMode', JSON.stringify(!isActionMode));
+    return !actionMode;
+}
+
+export function toggleActionMode() {
+    toggleStateActionMode();
+    applyActionMode();
+
+    console.log(`Движуха ${STATE.actionMode ? 'начата' : 'закончена'}.`)
 }
