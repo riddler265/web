@@ -97,28 +97,28 @@ input {
 
 button {
     cursor: pointer;
-    color: rgb(104, 253, 81);
-    background-color: rgb(1, 17, 0);
+    color: var(--stroke-color, rgb(104, 253, 81));
+    background-color: rgb(147, 127, 48);
     font-size: 14px;
     border: 0px;
     border-radius: 5px;
 }
 
 button:hover {
-    color: rgb(84, 203, 66);
+    background-color: rgb(133, 115, 44);
 }
 
 button:active {
-    color: rgb(104, 253, 81);
+    background-color: rgb(102, 88, 33);
 }
 
 ::selection {
-  background: rgb(7, 57, 3);
-  color: rgb(17, 165, 6);
+  background: var(--fill-color, rgb(7, 57, 3));
+  color: var(--stroke-color, rgb(17, 165, 6));
 }
 
 input[type="radio"]:checked {
-    accent-color: rgb(17, 165, 6);
+    accent-color: var(--stroke-color, rgb(17, 165, 6));
 }
 
 .parametrXSection {
