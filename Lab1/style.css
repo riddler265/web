@@ -97,7 +97,7 @@ input {
 
 button {
     cursor: pointer;
-    color: var(--stroke-color, rgb(104, 253, 81));
+    color: var(--strokeColor, rgb(104, 253, 81));
     background-color: rgb(147, 127, 48);
     font-size: 14px;
     border: 0px;
@@ -113,12 +113,12 @@ button:active {
 }
 
 ::selection {
-  background: var(--fill-color, rgb(7, 57, 3));
-  color: var(--stroke-color, rgb(17, 165, 6));
+  background: var(--fillColor, rgb(7, 57, 3));
+  color: var(--strokeColor, rgb(17, 165, 6));
 }
 
 input[type="radio"]:checked {
-    accent-color: var(--stroke-color, rgb(17, 165, 6));
+    accent-color: var(--strokeColor, rgb(17, 165, 6));
 }
 
 .parametrXSection {
