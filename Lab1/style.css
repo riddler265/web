@@ -1,7 +1,9 @@
 body {
     margin: 0;
     height: 100%;
+    width: 1200px;
     font-family: "Kelly Slab";
+    margin: 0 auto;
 }
 
 table {
@@ -33,7 +35,12 @@ table {
     border-radius: 10px;
 }
 
+.formTd {
+    width: 250px;
+}
+
 .shootForm {
+    width: 98%;
     padding: 10px 5px 0 10px;
     height: 100%;
 }
@@ -126,13 +133,12 @@ input[type="radio"]:checked {
 }
 
 .parametrXInput {
-    border-radius: 5px; 
     height:40px;
-    width: 99%;
-    padding: 0;
+    width: 96%;
     border-radius: 5px;
     border: 0px;
     font-size: 20px;
+    margin: 0 auto;
 }
 
 .parametrXInput::placeholder {
@@ -144,8 +150,8 @@ input[type="radio"]:checked {
 }
 
 .coordinateTd {
-    width: 800px;
-    padding: 0;
+    width: 5spx !important;
+    padding: 10px;
     line-height: 0;
     font-size: 0;
 }
@@ -169,11 +175,15 @@ input[type="radio"]:checked {
 }
 
 .shootButton {
-    width: 49%;
+    width: 31%;
 }
 
 .clearButton {
-    width: 49%;
+    width: 31%;
+}
+
+.toggleButton {
+    width: 31%;
 }
     
 .hitRecordTable {
