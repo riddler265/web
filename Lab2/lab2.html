@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №2</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
+</head>
+<body>
+    <table cellspacing="10">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    <h1 >Копылов Егор Вадимович</h1>
+                    <h2>P3208 Вариант: 451022</h2>
+                </td> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="canvas">
+                <td colspan="4">
+                    <Canvas id="coordinatePlane" class="coordinatePlane" width="1000" height="750"></Canvas>
+                </td>
+            </tr>
+            <tr id="sform">
+                <td id="SectionParametrR">
+                    <form id="form" class="form" method="get"></form>
+                    <legend>Параметр R</legend>
+
+                    <div>
+                        <div class="button">
+                            <label for="1R">1</label>
+                            <input type="radio" name="ParametrR" id="1R" value="1" form="form">
+                        </div>
+                        <div class="button">
+                            <label for="2R">2</label>
+                            <input type="radio" name="ParametrR" id="2R" value="2" form="form">
+                        </div>
+                        <div class="button">
+                            <label for="3R">3</label>
+                            <input type="radio" name="ParametrR" id="3R" value="3" form="form">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="button">
+                            <label for="4R">4</label>
+                            <input type="radio" name="ParametrR" id="4R" value="4" form="form">
+                        </div>
+                        <div class="button">
+                            <label for="5R">5</label>
+                            <input type="radio" name="ParametrR" id="5R" value="5" form="form" required>
+                        </div>
+                    </div>
+                </td>
+                <td id="SectionParametrY">
+                    <label for="SelectParametrY">Параметр Y</label>
+
+                    <select id="SelectParametrY" form="form">
+                        <option value="-4">-4</option>
+                        <option value="-3">-3</option>
+                        <option value="-2">-2</option>
+                        <option value="-1">-1</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>    
+                    </select>    
+                </td>
+                <td id="SectionParametrX">
+                    <label for="parametrX">Параметр X</label>
+                    <input type="text" id="parametrX" name="ParametrX" placeholder="Введите X" value="1" class="parametrXInput" form="form" required>
+                </td>
+                <td id="SectionButton">
+                    <button type="submit" class="shootButton" form="form">Выстрел</button>
+                    <button type="button" class="clearButton" form="form">Очистка</button>
+                </td>
+            </tr>
+            <tr id="footer">
+                <td colspan="4" align="center">
+                    <h2>Результаты</h2>
+                    <table width="100%" border="1" cellspacing="0" cellpadding="10" id="hitRecordTable" class="hitRecordTable">
+                        <thead id="HitRecordThead">
+                            <tr>
+                                <th>X</th>
+                                <th>Y</th>
+                                <th>R</th>
+                                <th>Попадание</th>
+                                <th>Время</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="module" src="script/script.js"></script>
+</body>
+</html>

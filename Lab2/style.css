@@ -1,0 +1,183 @@
+body {
+    margin: 0 auto;
+    width: 1200px;
+    font-family: "Kelly Slab";
+    /* background-image: url('https://avatars.mds.yandex.net/i?id=5f7dbc5cfd18e655eed758f69efbc1d1_l-5298842-images-thumbs&n=13'); */
+}
+
+table {
+    height: 100%;
+    margin: 0 auto;
+    background-color: rgb(212, 185, 77);
+}
+
+thead {
+    font-family: cursive;
+    font-size: 20px;
+    color: black;
+    border-collapse: collapse;
+}
+
+td {
+    background-color: rgb(172, 149, 55);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+::selection {
+    background: var(--fillColor, rgb(7, 57, 3));
+    color: var(--strokeColor, rgb(17, 165, 6));
+}
+
+input {
+    width: 100%;
+}
+
+input[type="radio"]:checked {
+    accent-color: var(--strokeColor, rgb(17, 165, 6));
+}
+
+button {
+    width: 100%;
+    height: 49%;
+    cursor: pointer;
+    color: var(--strokeColor, rgb(104, 253, 81));
+    background-color: rgb(147, 127, 48);
+    font-size: 14px;
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
+
+button:hover {
+    background-color: rgb(133, 115, 44);
+}
+
+button:active {
+    background-color: rgb(102, 88, 33);
+}
+
+#sform td {
+    vertical-align: top;
+}
+
+#sform td * {
+    display: block;
+}
+
+#sform td > input,
+#sform td > select {
+    width: 100%;
+    height: 50px;
+}
+
+#sform td > label,
+#sform td > legend {
+    font-size: 24px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+#SectionParametrR {
+    width: 25%;
+}
+
+#SectionParametrR div {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#SectionParametrY {
+    width: 15%;
+}
+
+#SectionParametrX {
+    width: 40%;
+}
+
+.button label, input {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button label {
+    color: rgb(1, 17, 0);
+    font-size: 20px;
+    width: 100%;
+    height: 30px;
+}
+
+.button {
+    width: 100%;
+    height: 50px;
+    border: 2px solid rgb(34, 27, 2);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.button:hover {
+    border: 2px solid rgb(152, 132, 53);
+    background-color: rgb(190, 163, 58);
+}
+
+.button:active {
+    border: 2px solid rgb(51, 41, 3);
+    background-color: rgb(147, 127, 48);
+}
+
+.parametrXInput {
+    height: 40px;
+    width: 96%;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 20px;
+    margin: 0px 5px 0px 0px;
+}
+
+.parametrXInput::placeholder {
+    color: black;
+}
+
+.parametrXInput.error::placeholder {
+    color: crimson;
+}
+
+.buttonSection {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonSection button {
+    height: 40px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    margin-right: 1%;
+}
+
+#main td {
+    
+}
+
+.coordinatePlane {
+    display: block;
+    border-radius: 10px;
+}
+
+.footer h2 {
+    margin: 0px 0px 10px 0px;
+}
+
+.hitRecordTable {
+    width: 100%;
+    box-sizing: border-box;
+    border: 5px solid rgb(172, 149, 55);
+    border-radius: 5px;
+    background-color: rgb(172, 149, 55);
+    text-align: center;
+    margin-bottom: 10px;
+}
