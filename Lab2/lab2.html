@@ -14,7 +14,7 @@
     <table cellspacing="10">
         <thead>
             <tr>
-                <td colspan="4">
+                <td colspan="3">
                     <h1 >Копылов Егор Вадимович</h1>
                     <h2>P3208 Вариант: 451022</h2>
                 </td> 
@@ -22,13 +22,13 @@
         </thead>
         <tbody>
             <tr id="canvas">
-                <td colspan="4">
-                    <Canvas id="coordinatePlane" class="coordinatePlane" width="1000" height="750"></Canvas>
+                <td colspan="3">
+                    <Canvas id="coordinatePlane" class="coordinatePlane" width="1000" height="1000"></Canvas>
                 </td>
             </tr>
             <tr id="sform">
-                <td id="SectionParametrR">
-                    <form id="form" class="form" method="get"></form>
+                <td id="SectionParametrR" rowspan="2">
+                    <form id="form" method="get"></form>
                     <legend>Параметр R</legend>
 
                     <div>
@@ -75,13 +75,17 @@
                     <label for="parametrX">Параметр X</label>
                     <input type="text" id="parametrX" name="ParametrX" placeholder="Введите X" value="1" class="parametrXInput" form="form" required>
                 </td>
-                <td id="SectionButton">
-                    <button type="submit" class="shootButton" form="form">Выстрел</button>
-                    <button type="button" class="clearButton" form="form">Очистка</button>
+            </tr>
+            <tr>
+                <td id="SectionButton" colspan="2">
+                    <div>
+                        <button type="submit" id="shootButton" form="form">Выстрел</button>
+                        <button type="button" id="clearButton" form="form">Очистка</button>
+                    </div>
                 </td>
             </tr>
             <tr id="footer">
-                <td colspan="4" align="center">
+                <td colspan="3" align="center">
                     <h2>Результаты</h2>
                     <table width="100%" border="1" cellspacing="0" cellpadding="10" id="hitRecordTable" class="hitRecordTable">
                         <thead id="HitRecordThead">
