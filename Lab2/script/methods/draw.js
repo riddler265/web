@@ -33,17 +33,6 @@ export function drawPlane(parametrR) {
     ctx.stroke();
     ctx.fill();
 
-    // ctx.moveTo(centerX + radius / 2, centerY);
-    // ctx.lineTo(centerX + radius / 2, centerY - radius);
-    // ctx.lineTo(centerX, centerY - radius);
-    // ctx.moveTo(centerX, centerY + radius);
-    // ctx.arc(centerX, centerY, radius / 2, Math.PI * 1.5, Math.PI, true);
-    // ctx.moveTo(centerX, centerY);
-    // ctx.moveTo(centerX, centerY + radius);
-    // ctx.closePath();
-    // ctx.stroke();
-    // ctx.fill();
-
     ctx.fillStyle = strokeColor;
     ctx.lineWidth = 1;
     ctx.beginPath();
