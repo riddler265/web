@@ -8,10 +8,16 @@ drawPlane(1);
 form.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const data = new FormData(this);
+    const formData = new FormData(this);
+    const parametres = new URLSearchParams(formData).toString();
+    const url = `/submit/shoot?${parametres}`;
 
-    const r = data.get('ParametrR');
-    console.log(r);
-
-    drawPlane(r);
+    fetch(url)
+        .then(responce => responce.json())
+        .then(data => {
+            drawPlane(data.r)
+        })
+        .catch(error => {
+            console.log('Что-то пошло не так.')
+        });
 })
