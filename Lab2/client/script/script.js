@@ -12,12 +12,14 @@ form.addEventListener('submit', function(event) {
     const parametres = new URLSearchParams(formData).toString();
     const url = `/submit/shoot?${parametres}`;
 
+    console.log(formData, parametres, url);
+
     fetch(url)
         .then(responce => responce.json())
         .then(data => {
             drawPlane(data.r)
         })
         .catch(error => {
-            console.log('Что-то пошло не так.')
+            console.log(parametres)
         });
 })

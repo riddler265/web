@@ -1,5 +1,3 @@
-import { STATE } from "../state/state.js";
-
 const canvas = document.getElementById('coordinatePlane');
 const ctx = canvas.getContext('2d');
 
