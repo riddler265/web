@@ -10,7 +10,7 @@ form.addEventListener('submit', function(event) {
 
     const formData = new FormData(this);
     const parametres = new URLSearchParams(formData).toString();
-    const url = `/submit/shoot?${parametres}`;
+    const url = `/fcgi-bin/server.jar?${parametres}`;
 
     console.log(formData, parametres, url);
 
