@@ -1,0 +1,26 @@
+# Скомпилированные файлы Java
+*.class
+
+# Файлы архивов и сборок
+*.jar
+*.war
+*.ear
+
+# Папки сборки (Gradle / Maven)
+out/
+build/
+bin/
+target/
+.gradle/
+
+# Настройки VS Code
+.vscode/
+*.code-workspace
+
+# Настройки IntelliJ IDEA (если кто-то из команды использует её)
+.idea/
+*.iml
+
+# Логи и временные файлы
+*.log
+*.tmp
