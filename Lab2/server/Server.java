@@ -3,6 +3,7 @@ package server;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 
@@ -16,7 +17,7 @@ class Server {
     public static void main(String[] args) {
         
         FCGIInterface fcgiInterface = new FCGIInterface();
-
+        System.out.println("Server Started");
         while (fcgiInterface.FCGIaccept() >= 0) {
 
             try {
@@ -30,7 +31,7 @@ class Server {
                 String[] rawParams = rawInput.split("&");
 
                 for (int i = 0; i < rawParams.length; i++) {
-                    rawParams[i] = rawParams[i].replaceAll("[XYZ]=\\s*", "");
+                    rawParams[i] = rawParams[i].replaceAll("[XYR]=\\s*", "");
                 }
 
                 R = validateR(rawParams[0]);
@@ -61,8 +62,8 @@ class Server {
         int[] available = {-4, -3, -2, -1, 0, 1, 2, 3, 4};
 
         for (int i = 0; i < available.length; i++) {
-            if (Y.compareTo(BigDecimal.valueOf(available[i])) != 0) throw new NumberFormatException("Y");
-        } return Y;
+            if (Y.compareTo(BigDecimal.valueOf(available[i])) != 0) return Y;
+        } throw new NumberFormatException("Y");
     }
 
     static BigDecimal validateR(String r) throws NumberFormatException {
@@ -70,28 +71,28 @@ class Server {
         int[] available = {1, 2, 3, 4, 5};
 
         for (int i = 0; i < available.length; i++) {
-            if (R.compareTo(BigDecimal.valueOf(available[i])) != 0) throw new NumberFormatException("R");
-        } return R;
+            if (R.compareTo(BigDecimal.valueOf(available[i])) != 0) return R;
+        } throw new NumberFormatException("R");
     }
 
     static boolean isHit(BigDecimal X, BigDecimal Y, BigDecimal R) {
-        if (X.compareTo(BigDecimal.ZERO) >= 0 && X.compareTo(R.divide(BigDecimal.TWO)) <= 0) {
-            if (Y.compareTo(BigDecimal.ZERO) >= 0 && Y.compareTo(R) <= 0) return true;
+        if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && X.compareTo(R.divide(BigDecimal.valueOf(2))) <= 0) {
+            if (Y.compareTo(BigDecimal.valueOf(0)) >= 0 && Y.compareTo(R) <= 0) return true;
         } 
-        else if (X.compareTo(BigDecimal.ZERO) >= 0 && Y.compareTo(BigDecimal.ZERO) <= 0) {
+        else if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && Y.compareTo(BigDecimal.valueOf(0)) <= 0) {
             if (Y.compareTo(X.add(R)) <= 0) return true;
         }
-        else if (Y.compareTo(BigDecimal.ZERO) >= 0) {
-            if (X.multiply(X).add(Y.multiply(Y)).compareTo(R.multiply(R).divide(BigDecimal.valueOf(0.25))) <= 0) return true;
+        else if (Y.compareTo(BigDecimal.valueOf(0)) >= 0) {
+            if (X.multiply(X).add(Y.multiply(Y)).compareTo(R.multiply(R).divide(BigDecimal.valueOf(4))) <= 0) return true;
         }
         return false;
     }
 
     static void success(BigDecimal x, BigDecimal y, BigDecimal r, boolean is_hit, String current_time, double server_work_time) {
 
-        String json = String.format(
-            "{\"x\": \"%s\", \"y\": \"%s\", \"r\": \"%s\", \"is_hit\": %b, \"curren_time\": \"%s\", \"server_work_time\": %d}",
-        x.toString(), y.toString(), r.toString(), is_hit, current_time, server_work_time);
+        String json = String.format(Locale.ROOT,
+    "{\"x\": \"%s\", \"y\": \"%s\", \"r\": \"%s\", \"is_hit\": %b, \"current_time\": \"%s\", \"server_work_time\": %.3f}",
+    x, y, r, is_hit, current_time, server_work_time);
 
         String httpResponse = "Content-Type: application/json\r\n" +
                 "Content-Length: " + json.getBytes(StandardCharsets.UTF_8).length + "\r\n\r\n" +
