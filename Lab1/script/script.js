@@ -45,7 +45,7 @@ shootForm.addEventListener('submit', function(event) {
 
         drawPlane(parametrR);
         drawDots(hitRecordSet);
-
+ю
 
         
         inputX.classList.remove('error');
@@ -119,7 +119,6 @@ function loadHitRecords() {
             hitRecordSet.add(hitRecord);
         }
     }
-
 }
 
 function createHitRecord(hitRecord) {
