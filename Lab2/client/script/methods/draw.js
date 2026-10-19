@@ -69,3 +69,23 @@ export function drawPlane(parametrR) {
     }
     ctx.stroke();
 }
+
+export function drawDots(hitRecordSet) {
+
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+
+    for (const hitRecord of hitRecordSet) {
+        const x = hitRecord.dot.x;
+        const y = hitRecord.dot.y;
+        ctx.fillStyle = hitRecord.hit ? '#ad3b3b' : '#000';
+
+        ctx.beginPath();
+        ctx.arc(centerX + division * x, centerY - division * y, 4, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+    }
+
+    ctx.lineWidth = 1;
+}
