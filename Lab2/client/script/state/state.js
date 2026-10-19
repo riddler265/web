@@ -3,6 +3,9 @@ const DEFAULTS = {
     parametrX: 1,
     parametrY: '1',
     parametrR: 1,
+
+    //logger
+    log: '...',
 }
 
 export const STATE = {
@@ -28,6 +31,13 @@ export function saveParametrR(parametrR) {
     save();
 
     return parametrR;
+}
+
+export function saveLog(log) {
+    STATE.log = log;
+    save()
+
+    return log;
 }
 
 
