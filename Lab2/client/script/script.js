@@ -50,7 +50,7 @@ form.addEventListener('submit', async function(event) {
     }
 })
 
-clearButton.addEventListener('clicl', function(event) {
+clearButton.addEventListener('clicl', function() {
     hitRecordTable.innerHTML = `
     <thead id="HitRecordThead">
                         <tr>
@@ -75,7 +75,7 @@ function loadHitRecords() {
 
     if (Array.isArray(hitRecordArray)) {
         for (const rawRecord of hitRecordArray) {
-            const dot = new Dot(new Decimal(rawRecord.dot.x), rawRecord.dot.y);
+            const dot = new Dot(rawRecord.dot.x, rawRecord.dot.y);
             
             const hitRecord = new HitRecord(
                 dot, 
