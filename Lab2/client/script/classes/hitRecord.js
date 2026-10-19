@@ -4,6 +4,6 @@ export class HitRecord {
         this.dot = dot;
         this.radius = radius;
         this.hit = isHit;
-        this.currentTime = currentTime.toLocaleTimeString();
+        this.currentTime = new Date(currentTime).toLocaleTimeString();
     }
 }
