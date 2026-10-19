@@ -31,7 +31,7 @@ form.addEventListener('submit', async function(event) {
         }
 
         const data = await responce.json();
-        console.log(`Валидация проведена. \nX: $${data.x} \nY: ${data.y} \nR: ${data.r}`);
+        console.log(`Валидация проведена. \nX: ${data.x} \nY: ${data.y} \nR: ${data.r}`);
 
         saveParametrR(data.r);
         saveParametrX(data.x);
