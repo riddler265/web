@@ -117,7 +117,6 @@ function log(log) {
     logger.textContent = STATE.saveLog(log);
 }
 
-
 function init() {
     drawPlane(STATE.parametrR);
     drawDots(hitRecordSet);
