@@ -114,7 +114,7 @@ function createHitRecord(hitRecord) {
 }
 
 function log(log) {
-    logger.textContent = STATE.saveLog(log);
+    logger.textContent = saveLog(log);
 }
 
 function init() {
