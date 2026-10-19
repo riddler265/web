@@ -50,7 +50,7 @@ form.addEventListener('submit', async function(event) {
     }
 })
 
-clearButton.addEventListener('clicl', function() {
+clearButton.addEventListener('click', function() {
     hitRecordTable.innerHTML = `
     <thead id="HitRecordThead">
                         <tr>
@@ -79,8 +79,9 @@ function loadHitRecords() {
             
             const hitRecord = new HitRecord(
                 dot, 
-                rawRecord.radius,  
-                rawRecord.timestamp
+                rawRecord.radius,
+                rawRecord.hit,
+                rawRecord.currentTime
             );
 
             createHitRecord(hitRecord);
