@@ -59,7 +59,8 @@ class Server {
                 "{\"x\": \"%s\", \"y\": \"%s\", \"r\": \"%s\", \"is_hit\": %b, \"current_time\": \"%s\", \"server_work_time\": %.3f}",
                 x, y, r, is_hit, current_time, server_work_time);
 
-        String httpResponse = "Content-Type: application/json\r\n" +
+        String httpResponse = "Status: 200 Ok\r\n" + 
+                "Content-Type: application/json\r\n" +
                 "Content-Length: " + json.getBytes(StandardCharsets.UTF_8).length + "\r\n\r\n" +
                 json;
         System.out.println(httpResponse);
