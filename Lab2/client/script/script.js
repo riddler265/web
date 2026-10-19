@@ -23,7 +23,7 @@ form.addEventListener('submit', async function(event) {
         const url = `/fcgi-bin/server.jar?${parametres}`;
 
         const responce = await fetch(url);
-        console.log(`Получен ответ от сервера. ${responce.status}.`);
+        console.log(`Получен ответ от сервера: ${responce.status}.`);
 
         if (!responce.ok) {
             const data = await responce.json();
@@ -31,7 +31,7 @@ form.addEventListener('submit', async function(event) {
         }
 
         const data = await responce.json();
-        console.log(`Валидация проведена. \nX: ${data.x} \nY: ${data.y} \nR: ${data.r}`);
+        console.log(`Валидация проведена. \nX: ${data.x} \nY: ${data.y} \nR: ${data.r} \nПопадание: ${data.is_hit} \nВремя выстрела`);
 
         saveParametrR(data.r);
         saveParametrX(data.x);
@@ -51,6 +51,8 @@ form.addEventListener('submit', async function(event) {
 })
 
 clearButton.addEventListener('click', function() {
+    hitRecordSet.clear();
+    localStorage.removeItem('hitRecordSet');
     hitRecordTable.innerHTML = `
     <thead id="HitRecordThead">
                         <tr>
@@ -101,7 +103,7 @@ function createHitRecord(hitRecord) {
     const tdHit = document.createElement('td');
     tdHit.textContent = hitRecord.hit ? 'Попадание' : 'Промах';
     const tdTimestamp = document.createElement('td');
-    tdTimestamp.textContent = new Date(hitRecord.timestamp).toLocaleString('ru-RU');
+    tdTimestamp.textContent = hitRecord.currentTime;
 
     tr.appendChild(tdX);
     tr.appendChild(tdY);
