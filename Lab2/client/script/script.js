@@ -31,7 +31,7 @@ form.addEventListener('submit', async function(event) {
         }
 
         const data = await responce.json();
-        console.log(`Валидация проведена. \nX: ${data.x} \nY: ${data.y} \nR: ${data.r} \nПопадание: ${data.is_hit} \nВремя выстрела`);
+        console.log(`Валидация проведена. \nX: ${data.x} \nY: ${data.y} \nR: ${data.r} \nПопадание: ${data.is_hit} \nВремя выстрела: ${data.current_time} \nВремя работы сервера: ${data.server_work_time}`);
 
         saveParametrR(data.r);
         saveParametrX(data.x);
@@ -43,7 +43,7 @@ form.addEventListener('submit', async function(event) {
 
         drawPlane(data.r);
         drawDots(hitRecordSet);
-        log('Succes!');
+        log(data.is_hit ? 'Попадание!' : 'Промах(');
 
     } catch (error) {
         log(error.message);
@@ -65,6 +65,7 @@ clearButton.addEventListener('click', function() {
                     </thead>
                     `;
     drawPlane(STATE.parametrR);
+    log('Очистка.');
 })
 
 function loadHitRecords() {
@@ -96,6 +97,7 @@ function createHitRecord(hitRecord) {
     const tr = document.createElement('tr');
     const tdX = document.createElement('td');
     tdX.textContent = hitRecord.dot.x;
+    tdX.classList.add('column-x');
     const tdY = document.createElement('td');
     tdY.textContent = hitRecord.dot.y;
     const tdR = document.createElement('td');
