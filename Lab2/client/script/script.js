@@ -105,7 +105,7 @@ function createHitRecord(hitRecord) {
     const tdHit = document.createElement('td');
     tdHit.textContent = hitRecord.hit ? 'Попадание' : 'Промах';
     const tdTimestamp = document.createElement('td');
-    tdTimestamp.textContent = hitRecord.currentTime;
+    tdTimestamp.textContent = new Date(hitRecord.currentTime).toLocaleTimeString();
 
     tr.appendChild(tdX);
     tr.appendChild(tdY);
