@@ -5,10 +5,16 @@ import java.math.BigDecimal;
 public class Validator {
 
     public BigDecimal validateX(String x) throws NumberFormatException {
-        BigDecimal X = new BigDecimal(x);
+        try {
 
-        if (X.compareTo(BigDecimal.valueOf(-5.0)) < 0 || X.compareTo(BigDecimal.valueOf(5.0)) > 0) throw new NumberFormatException("X");
-        return X;
+            BigDecimal X = new BigDecimal(x);
+
+            if (X.compareTo(BigDecimal.valueOf(-5.0)) < 0 || X.compareTo(BigDecimal.valueOf(5.0)) > 0)
+                throw new NumberFormatException();
+            return X;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("X в пределах (-5 ; 5)");
+        }
     }
 
     public BigDecimal validateY(String y) throws NumberFormatException {
@@ -33,7 +39,7 @@ public class Validator {
         if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && X.compareTo(R.divide(BigDecimal.valueOf(2))) <= 0) {
             if (Y.compareTo(BigDecimal.valueOf(0)) >= 0 && Y.compareTo(R) <= 0) return true;
         }
-        else if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && Y.compareTo(BigDecimal.valueOf(0)) <= 0) {
+        else if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && X.compareTo(R) <= 0 && Y.compareTo(BigDecimal.valueOf(0)) <= 0) {
             if (Y.compareTo(X.add(R)) <= 0) return true;
         }
         else if (Y.compareTo(BigDecimal.valueOf(0)) >= 0) {
