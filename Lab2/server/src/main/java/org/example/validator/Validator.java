@@ -38,7 +38,7 @@ public class Validator {
             if (Y.compareTo(BigDecimal.valueOf(0)) >= 0 && Y.compareTo(R) <= 0) return true;
         }
         else if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && Y.compareTo(BigDecimal.valueOf(0)) <= 0) {
-            if (Y.compareTo(X.subtract(R)) <= 0) return true;
+            if (Y.compareTo(X.add(R)) <= 0) return true;
         }
         else if (Y.compareTo(BigDecimal.valueOf(0)) >= 0) {
             if (X.multiply(X).add(Y.multiply(Y)).compareTo(R.multiply(R).divide(BigDecimal.valueOf(4))) <= 0) return true;
