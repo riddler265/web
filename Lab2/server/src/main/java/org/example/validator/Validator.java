@@ -6,12 +6,11 @@ public class Validator {
 
     public BigDecimal validateX(String x) throws NumberFormatException {
         try {
-
             BigDecimal X = new BigDecimal(x);
 
-            if (X.compareTo(BigDecimal.valueOf(-5.0)) < 0 || X.compareTo(BigDecimal.valueOf(5.0)) > 0)
+            if (X.compareTo(BigDecimal.valueOf(-5.0)) <= 0 || X.compareTo(BigDecimal.valueOf(5.0)) >= 0) {
                 throw new NumberFormatException();
-            return X;
+            } return X;
         } catch (NumberFormatException e) {
             throw new NumberFormatException("X в пределах (-5 ; 5)");
         }
@@ -21,30 +20,32 @@ public class Validator {
         BigDecimal Y = new BigDecimal(y);
         int[] available = {-4, -3, -2, -1, 0, 1, 2, 3, 4};
 
-        for (int i = 0; i < available.length; i++) {
-            if (Y.compareTo(BigDecimal.valueOf(available[i])) != 0) return Y;
-        } throw new NumberFormatException("Y");
+        for (int a : available) {
+            if (Y.compareTo(BigDecimal.valueOf(a)) == 0) return Y;
+        } throw new NumberFormatException("Y - целое число в пределах [-4, 4]");
     }
 
     public BigDecimal validateR(String r) throws NumberFormatException {
         BigDecimal R = new BigDecimal(r);
         int[] available = {1, 2, 3, 4, 5};
 
-        for (int i = 0; i < available.length; i++) {
-            if (R.compareTo(BigDecimal.valueOf(available[i])) != 0) return R;
-        } throw new NumberFormatException("R");
+        for (int a : available) {
+            if (R.compareTo(BigDecimal.valueOf(a)) == 0) return R;
+        } throw new NumberFormatException("R - целое число в пределах [1, 5]");
     }
 
-    public boolean isHit(BigDecimal X, BigDecimal Y, BigDecimal R) {
-        if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && X.compareTo(R.divide(BigDecimal.valueOf(2))) <= 0) {
-            if (Y.compareTo(BigDecimal.valueOf(0)) >= 0 && Y.compareTo(R) <= 0) return true;
-        }
-        else if (X.compareTo(BigDecimal.valueOf(0)) >= 0 && X.compareTo(R) <= 0 && Y.compareTo(BigDecimal.valueOf(0)) <= 0) {
-            if (Y.compareTo(X.add(R)) <= 0) return true;
-        }
-        else if (Y.compareTo(BigDecimal.valueOf(0)) >= 0) {
-            if (X.multiply(X).add(Y.multiply(Y)).compareTo(R.multiply(R).divide(BigDecimal.valueOf(4))) <= 0) return true;
-        }
-        return false;
+    public boolean isHit(BigDecimal x, BigDecimal y, BigDecimal r) {
+        BigDecimal halfR = r.divide(BigDecimal.valueOf(2));
+
+        boolean rect = x.signum() >= 0 && x.compareTo(halfR) <= 0
+                && y.signum() >= 0 && y.compareTo(r) <= 0;
+
+        boolean triangle = x.signum() >= 0 && x.compareTo(r) <= 0
+                && y.signum() <= 0 && y.compareTo(x.subtract(r)) >= 0;
+
+        boolean circle = y.signum() >= 0 && x.multiply(x).add(y.multiply(y))
+                .compareTo(r.multiply(r).divide(BigDecimal.valueOf(4))) <= 0;
+
+        return rect || triangle || circle;
     }
 }
