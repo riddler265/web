@@ -33,7 +33,7 @@ class Server {
 
                 final BigDecimal X, Y, R;
                 final boolean IS_HIT;
-                String CURRENT_TIME = ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT);
+                final String CURRENT_TIME = ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT);
                 final double SERVER_WORK_TIME = (System.nanoTime() - SERVER_START_TIME) / 1_000_000.0;
 
 
@@ -79,7 +79,7 @@ class Server {
                 "{\"x\": \"%s\", \"y\": \"%s\", \"r\": \"%s\", \"is_hit\": %b, \"current_time\": \"%s\", \"server_work_time\": %.3f}",
                 x, y, r, is_hit, current_time, server_work_time);
 
-        String httpResponse = "Status: 200 Ok\r\n" + 
+        String httpResponse = "Status: 200 OK\r\n" +
                 "Content-Type: application/json\r\n" +
                 "Content-Length: " + json.getBytes(StandardCharsets.UTF_8).length + "\r\n\r\n" +
                 json;
