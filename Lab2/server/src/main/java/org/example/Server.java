@@ -24,6 +24,8 @@ class Server {
         while (fcgiInterface.FCGIaccept() >= 0) {
 
             try {
+                String METHOD = System.getProperty("REQUEST_METHOD");
+
                 final BigDecimal X, Y, R;
                 final boolean IS_HIT;
                 String CURRENT_TIME = ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT);
@@ -32,14 +34,27 @@ class Server {
 
                 String rawInput = System.getProperty("QUERY_STRING");
                 String[] rawParams = rawInput.split("&");
+                String strX = null, strY = null, strR = null;
 
-                for (int i = 0; i < rawParams.length; i++) {
-                    rawParams[i] = rawParams[i].replaceAll("[XYR]=\\s*", "");
+                for (String param : rawParams) {
+                    String[] pair = param.split("=", 2);
+                    if (pair.length == 2) {
+                        switch (pair[0]) {
+                            case "x": strX = pair[1]; break;
+                            case "y": strY = pair[1]; break;
+                            case "r": strR = pair[1]; break;
+                        }
+                    }
                 }
 
-                R = validator.validateR(rawParams[0]);
-                Y = validator.validateY(rawParams[1]);
-                X = validator.validateX(rawParams[2]);
+                if (strX == null || strY == null || strR == null) {
+                    fail("Invalid parameters");
+                    continue;
+                }
+
+                R = validator.validateR(strR);
+                Y = validator.validateY(strY);
+                X = validator.validateX(strX);
 
                 IS_HIT = validator.isHit(X, Y, R);
 
