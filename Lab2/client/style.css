@@ -201,3 +201,10 @@ button:active {
     text-align: center;
     margin-bottom: 10px;
 }
+
+.column-x {
+    width: 300px;
+    word-break: break-all;
+    white-space: normal;
+    text-align: center;
+}
