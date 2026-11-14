@@ -26,6 +26,11 @@ class Server {
             try {
                 String METHOD = System.getProperty("REQUEST_METHOD");
 
+                if (!"GET".equals(METHOD)) {
+                    fail("The GET method was expected.");
+                    continue;
+                }
+
                 final BigDecimal X, Y, R;
                 final boolean IS_HIT;
                 String CURRENT_TIME = ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT);
@@ -40,9 +45,9 @@ class Server {
                     String[] pair = param.split("=", 2);
                     if (pair.length == 2) {
                         switch (pair[0]) {
-                            case "x": strX = pair[1]; break;
-                            case "y": strY = pair[1]; break;
-                            case "r": strR = pair[1]; break;
+                            case "X": strX = pair[1]; break;
+                            case "Y": strY = pair[1]; break;
+                            case "R": strR = pair[1]; break;
                         }
                     }
                 }
