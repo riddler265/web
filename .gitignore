@@ -5,8 +5,8 @@ build/
 !**/src/test/**/build/
 .kotlin
 
-./тесты
-./теорияы
+тесты/
+теория/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
