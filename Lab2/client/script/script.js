@@ -1,5 +1,6 @@
 import { drawPlane, drawDots } from './methods/draw.js';
 import { syncInputs } from './methods/syncInputs.js';
+import { formatUptimeText } from './methods/formatUptimeText.js';
 import { STATE, saveParametrR, saveParametrX, saveParametrY, saveLog } from './state/state.js';
 import { Dot } from './classes/dot.js';
 import { HitRecord } from './classes/hitRecord.js';
@@ -31,8 +32,7 @@ form.addEventListener('submit', async function(event) {
         }
 
         const data = await responce.json();
-        console.log(`Валидация проведена. \nX: ${data.x} \nY: ${data.y} \nR: ${data.r} \nПопадание: ${data.is_hit} \nВремя выстрела: ${data.current_time} \nВремя работы сервера: ${data.server_work_time}`);
-
+        console.log(`Валидация проведена. \nX: ${data.x} \nY: ${data.y} \nR: ${data.r} \nПопадание: ${data.is_hit} \nВремя выстрела: ${new Date(data.current_time).toLocaleTimeString()} \nВремя работы сервера: ${formatUptimeText(data.server_work_time)}`);
         saveParametrR(data.r);
         saveParametrX(data.x);
         saveParametrY(data.y);
